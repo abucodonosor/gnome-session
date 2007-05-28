@@ -2,8 +2,8 @@
 
 Summary:        The gnome desktop programs for the GNOME GUI desktop environment
 Name:           gnome-session
-Version: 2.18.0
-Release:        %mkrel 3
+Version: 2.18.2
+Release:        %mkrel 1
 License:        GPL/LGPL
 Group:          Graphical desktop/GNOME
 Source0:        ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
