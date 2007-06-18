@@ -2,8 +2,8 @@
 
 Summary:        The gnome desktop programs for the GNOME GUI desktop environment
 Name:           gnome-session
-Version: 2.19.3
-Release:        %mkrel 2
+Version: 2.19.4
+Release:        %mkrel 1
 License:        GPL/LGPL
 Group:          Graphical desktop/GNOME
 Source0:        ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
@@ -21,7 +21,7 @@ Patch8:		gnome-session-2.13.4-no-crashes.patch
 # (blino) 2.16.1-2mdv allow to pass sm client id to compositing wm
 Patch9:		gnome-session-2.16.1-compositing-wm.patch
 # (fc) 2.17.92-2mdv increase timeout for at-spi launch
-Patch11:	gnome-session-2.17.92-popup.patch
+Patch11:	gnome-session-2.19.4-popup.patch
 
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-root
