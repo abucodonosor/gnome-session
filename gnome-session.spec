@@ -2,7 +2,7 @@
 
 Summary:        The gnome desktop programs for the GNOME GUI desktop environment
 Name:           gnome-session
-Version: 2.19.5
+Version: 2.19.6
 Release:        %mkrel 1
 License:        GPL/LGPL
 Group:          Graphical desktop/GNOME
