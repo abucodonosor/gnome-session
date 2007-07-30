@@ -37,6 +37,7 @@ BuildRequires:	libGConf2-devel >= 1.2.1
 BuildRequires:  libgnomeui2-devel >= %{req_libgnomeui_version}
 BuildRequires:  libgnome-window-settings-devel >= 2.15.4
 BuildRequires:  avahi-glib-devel avahi-client-devel
+BuildRequires:  libgcrypt-devel
 BuildRequires: perl-XML-Parser
 BuildRequires: desktop-file-utils
 BuildRequires: automake1.9
