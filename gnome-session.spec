@@ -3,7 +3,7 @@
 Summary:        The gnome desktop programs for the GNOME GUI desktop environment
 Name:           gnome-session
 Version: 2.19.92
-Release:        %mkrel 1
+Release:        %mkrel 2
 License:        GPL/LGPL
 Group:          Graphical desktop/GNOME
 Source0:        ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
@@ -83,14 +83,10 @@ SCRIPT:
 exec %{_bindir}/startgnome
 EOF
 
-mkdir -p $RPM_BUILD_ROOT%{_menudir}
-cat << EOF >  $RPM_BUILD_ROOT%{_menudir}/%{name}
-?package(%{name}): command="%{_bindir}/gnome-session-properties" icon="%{_datadir}/icons/hicolor/48x48/apps/gnome-session.png" title="Sessions" longtitle="Configure your sessions" needs="gnome" section="Configuration/GNOME/Advanced" startup_notify="true" xdg="true"
-EOF
 desktop-file-install --vendor="" \
-  --remove-category="Application" \
-  --remove-category="AdvancedSettings" \
   --add-category="X-MandrivaLinux-System-Configuration-GNOME-Advanced" \
+  --add-category="GTK" \
+  --add-category="GNOME" \
   --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*
 
 
@@ -138,7 +134,6 @@ fi
 %{_datadir}/gnome/*
 %{_datadir}/pixmaps/*
 %_datadir/icons/hicolor/*/apps/*
-%{_menudir}/*
 %{_mandir}/*/*
 
 
