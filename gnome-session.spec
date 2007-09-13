@@ -3,7 +3,7 @@
 Summary:        The gnome desktop programs for the GNOME GUI desktop environment
 Name:           gnome-session
 Version: 2.19.92
-Release:        %mkrel 2
+Release:        %mkrel 3
 License:        GPL/LGPL
 Group:          Graphical desktop/GNOME
 Source0:        ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
@@ -22,6 +22,8 @@ Patch8:		gnome-session-2.13.4-no-crashes.patch
 Patch9:		gnome-session-2.16.1-compositing-wm.patch
 # (fc) 2.17.92-2mdv increase timeout for at-spi launch
 Patch11:	gnome-session-2.19.4-popup.patch
+# (fc) 2.19.92-3mdv fix ICE memleak (Fedora)
+Patch12:	gnome-session-ice-leaks.patch
 
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-root
@@ -58,6 +60,7 @@ when you log into GNOME.
 %patch8 -p1 -b .disablewarningcrash
 %patch9 -p1 -b .compositing-wm
 %patch11 -p1 -b .popup
+%patch12 -p1 -b .iceleaks
 
 %build
 
