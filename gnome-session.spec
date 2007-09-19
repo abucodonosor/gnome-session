@@ -24,7 +24,10 @@ Patch9:		gnome-session-2.16.1-compositing-wm.patch
 Patch11:	gnome-session-2.19.4-popup.patch
 # (fc) 2.19.92-3mdv fix ICE memleak (Fedora)
 Patch12:	gnome-session-ice-leaks.patch
-
+# (fc) 2.20.0-1mdv don't fade logout on LTSP client (Ubuntu)
+Patch13:	gnome-session-2.20-dont-fade-ltsp.patch
+# (fc) 2.20.0-1mdv prevent splash from staying too long on screen (Ubuntu)
+Patch14:	gnome-session-2.20-splash-hide.patch
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-root
 URL:            http://www.gnome.org/softwaremap/projects/gnome-session/
@@ -61,6 +64,8 @@ when you log into GNOME.
 %patch9 -p1 -b .compositing-wm
 %patch11 -p1 -b .popup
 %patch12 -p1 -b .iceleaks
+%patch13 -p1 -b .prevent-fade-ltsp
+%patch14 -p1 -b .splash-hide
 
 %build
 
