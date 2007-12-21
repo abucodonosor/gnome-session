@@ -31,6 +31,7 @@ Patch14:	gnome-session-2.20-splash-hide.patch
 # (fc) 2.20.0-2mdv fix login/logout sound (GNOME bug #466458)
 Patch15:	gnome-session-2.20-esd.patch
 
+BuildRoot:      %{_tmppath}/%{name}-%{version}-root
 URL:            http://www.gnome.org/softwaremap/projects/gnome-session/
 Requires:	GConf2 >= 1.2.1
 Requires:	mandrake_desk >= 9.0-6mdk
