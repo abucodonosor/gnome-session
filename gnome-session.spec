@@ -2,7 +2,7 @@
 
 Summary:        The gnome desktop programs for the GNOME GUI desktop environment
 Name:           gnome-session
-Version: 2.21.5
+Version: 2.21.90
 Release:        %mkrel 1
 License:        GPL/LGPL
 Group:          Graphical desktop/GNOME
@@ -37,12 +37,13 @@ Requires:	GConf2 >= 1.2.1
 Requires:	mandrake_desk >= 9.0-6mdk
 Requires:	usermode >= 1.63
 Requires:	gnome-user-docs
+Requires:	gnome-settings-daemon
 BuildRequires:	gnome-keyring-devel
 BuildRequires:	usermode-consoleonly
 BuildRequires:  tcp_wrappers-devel
 BuildRequires:	libGConf2-devel >= 1.2.1
 BuildRequires:  libgnomeui2-devel >= %{req_libgnomeui_version}
-BuildRequires:  libgnome-window-settings-devel >= 2.15.4
+BuildRequires:  gnome-settings-daemon-devel
 BuildRequires:  avahi-glib-devel avahi-client-devel
 BuildRequires:  libgcrypt-devel
 BuildRequires: perl-XML-Parser
