@@ -2,7 +2,7 @@
 
 Summary:        The gnome desktop programs for the GNOME GUI desktop environment
 Name:           gnome-session
-Version: 2.21.90
+Version: 2.21.91
 Release:        %mkrel 1
 License:        GPL/LGPL
 Group:          Graphical desktop/GNOME
@@ -27,7 +27,7 @@ Patch13:	gnome-session-2.20-dont-fade-ltsp.patch
 # (fc) 2.20.0-1mdv prevent splash from staying too long on screen (Ubuntu)
 Patch14:	gnome-session-2.20-splash-hide.patch
 # (fc) 2.20.0-2mdv fix login/logout sound (GNOME bug #466458)
-Patch15:	gnome-session-2.20-esd.patch
+Patch15:	gnome-session-2.21.91-esd.patch
 # (fc) 2.20.2-2mdv always enable sound server (since we use PulseAudio)
 Patch16:	gnome-session-enable-sound-by-default.patch
 
@@ -111,6 +111,9 @@ install -m 0755 %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/gnome/gnomerc
 
 # remove unpackaged files
 rm -f $RPM_BUILD_ROOT%{_bindir}/gnome-smproxy
+# gw these produce rpmlint errors:
+rm -rf %buildroot%_datadir/locale/{be@latin}
+
 
 %define schemas gnome-session
 
@@ -139,7 +142,7 @@ fi
 %defattr (-, root, root)
 %doc AUTHORS COPYING ChangeLog NEWS README
 %config(noreplace) %{_sysconfdir}/X11/wmsession.d/*
-%config(noreplace) %{_sysconfdir}/gnome/gnomerc
+%{_sysconfdir}/gnome/gnomerc
 %{_sysconfdir}/gconf/schemas/*
 %{_bindir}/*
 %{_datadir}/applications/*
