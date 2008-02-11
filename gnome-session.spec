@@ -106,13 +106,12 @@ install -m 0755 %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}/startgnome
 
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/gnome
 install -m 0755 %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/gnome/gnomerc
-
+# gw these produce rpmlint errors:
+rm -rf %buildroot%_datadir/locale/{be@latin}
 %find_lang %{name}-2.0
 
 # remove unpackaged files
 rm -f $RPM_BUILD_ROOT%{_bindir}/gnome-smproxy
-# gw these produce rpmlint errors:
-rm -rf %buildroot%_datadir/locale/{be@latin}
 
 
 %define schemas gnome-session
