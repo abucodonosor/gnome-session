@@ -3,7 +3,7 @@
 Summary:        The gnome desktop programs for the GNOME GUI desktop environment
 Name:           gnome-session
 Version: 2.21.91
-Release:        %mkrel 2
+Release:        %mkrel 3
 License:        GPL/LGPL
 Group:          Graphical desktop/GNOME
 Source0:        ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
@@ -34,6 +34,7 @@ Patch16:	gnome-session-enable-sound-by-default.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-root
 URL:            http://www.gnome.org/softwaremap/projects/gnome-session/
 Requires:	GConf2 >= 1.2.1
+Requires:	GConf2-sanity-check
 Requires:	mandrake_desk >= 9.0-6mdk
 Requires:	usermode >= 1.63
 Requires:	gnome-user-docs
