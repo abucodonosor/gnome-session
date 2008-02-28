@@ -3,7 +3,7 @@
 Summary:        The gnome desktop programs for the GNOME GUI desktop environment
 Name:           gnome-session
 Version: 2.21.92
-Release:        %mkrel 1
+Release:        %mkrel 2
 License:        GPL/LGPL
 Group:          Graphical desktop/GNOME
 Source0:        ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
@@ -35,7 +35,7 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-root
 URL:            http://www.gnome.org/softwaremap/projects/gnome-session/
 Requires:	GConf2 >= 1.2.1
 Requires:	GConf2-sanity-check
-Requires:	mandrake_desk >= 9.0-6mdk
+Requires:	desktop-common-data
 Requires:	usermode >= 1.63
 Requires:	gnome-user-docs
 Requires:	gnome-settings-daemon
