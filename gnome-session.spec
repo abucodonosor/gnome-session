@@ -2,8 +2,8 @@
 
 Summary:        The gnome desktop programs for the GNOME GUI desktop environment
 Name:           gnome-session
-Version: 2.21.92
-Release:        %mkrel 2
+Version: 2.21.93
+Release:        %mkrel 1
 License:        GPL/LGPL
 Group:          Graphical desktop/GNOME
 Source0:        ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
@@ -26,8 +26,6 @@ Patch11:	gnome-session-2.19.4-popup.patch
 Patch13:	gnome-session-2.20-dont-fade-ltsp.patch
 # (fc) 2.20.0-1mdv prevent splash from staying too long on screen (Ubuntu)
 Patch14:	gnome-session-2.20-splash-hide.patch
-# (fc) 2.20.0-2mdv fix login/logout sound (GNOME bug #466458)
-Patch15:	gnome-session-2.21.91-esd.patch
 # (fc) 2.20.2-2mdv always enable sound server (since we use PulseAudio)
 Patch16:	gnome-session-enable-sound-by-default.patch
 
@@ -69,7 +67,6 @@ when you log into GNOME.
 %patch11 -p1 -b .popup
 %patch13 -p1 -b .prevent-fade-ltsp
 %patch14 -p1 -b .splash-hide
-%patch15 -p1 -b .esd
 %patch16 -p1 -b .enable-sound
 
 %build
