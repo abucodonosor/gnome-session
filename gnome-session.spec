@@ -3,7 +3,7 @@
 Summary:        The gnome desktop programs for the GNOME GUI desktop environment
 Name:           gnome-session
 Version: 2.22.0
-Release:        %mkrel 1
+Release:        %mkrel 2
 License:        GPL/LGPL
 Group:          Graphical desktop/GNOME
 Source0:        ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
@@ -109,7 +109,7 @@ rm -rf %buildroot%_datadir/locale/{be@latin}
 %find_lang %{name}-2.0
 
 # remove unpackaged files
-rm -f $RPM_BUILD_ROOT%{_bindir}/gnome-smproxy
+rm -rf $RPM_BUILD_ROOT%{_bindir}/gnome-smproxy $RPM_BUILD_ROOT%{_datadir}/xsessions
 
 
 %define schemas gnome-session
@@ -146,7 +146,6 @@ fi
 %{_datadir}/gnome/*
 %{_datadir}/pixmaps/*
 %_datadir/icons/hicolor/*/apps/*
-%{_datadir}/xsessions/gnome.desktop
 %{_mandir}/*/*
 
 
