@@ -118,18 +118,24 @@ rm -rf $RPM_BUILD_ROOT%{_bindir}/gnome-smproxy $RPM_BUILD_ROOT%{_datadir}/xsessi
 if [ "$1" = "2" -a -r /etc/sysconfig/desktop ]; then
   sed -i -e "s|^DESKTOP=Gnome$|DESKTOP=GNOME|g" /etc/sysconfig/desktop
 fi
+%if %mdkversion < 200900
 %post_install_gconf_schemas %{schemas}
+%endif
 %{make_session}
+%if %mdkversion < 200900
 %{update_menus}
 %update_icon_cache hicolor
+%endif
 
 %preun
 %preun_uninstall_gconf_schemas %{schemas}
 
 %postun
 %{make_session}
+%if %mdkversion < 200900
 %{clean_menus}
 %clean_icon_cache hicolor
+%endif
 
 %clean
 [ -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != / ] && rm -rf $RPM_BUILD_ROOT
