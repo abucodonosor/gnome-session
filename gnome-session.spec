@@ -2,9 +2,9 @@
 
 Summary:        The gnome desktop programs for the GNOME GUI desktop environment
 Name:           gnome-session
-Version: 2.22.2
+Version: 2.22.3
 Release:        %mkrel 1
-License:        GPL/LGPL
+License:        GPLv2+
 Group:          Graphical desktop/GNOME
 Source0:        ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
 Source1:        gnome-session-startgnome
@@ -20,8 +20,6 @@ Patch6:		gnome-session-2.17.90-splash.patch
 Patch8:		gnome-session-2.13.4-no-crashes.patch
 # (blino) 2.16.1-2mdv allow to pass sm client id to compositing wm
 Patch9:		gnome-session-2.16.1-compositing-wm.patch
-# (fc) 2.17.92-2mdv increase timeout for at-spi launch
-Patch11:	gnome-session-2.19.4-popup.patch
 # (fc) 2.20.0-1mdv don't fade logout on LTSP client (Ubuntu)
 Patch13:	gnome-session-2.20-dont-fade-ltsp.patch
 # (fc) 2.20.0-1mdv prevent splash from staying too long on screen (Ubuntu)
@@ -45,7 +43,7 @@ BuildRequires:  libgnomeui2-devel >= %{req_libgnomeui_version}
 BuildRequires:  gnome-settings-daemon-devel
 BuildRequires:  avahi-glib-devel avahi-client-devel
 BuildRequires:  libgcrypt-devel
-BuildRequires: perl-XML-Parser
+BuildRequires: intltool
 BuildRequires: desktop-file-utils
 BuildRequires: automake1.9
 
@@ -64,7 +62,6 @@ when you log into GNOME.
 %patch6 -p1 -b .splash
 %patch8 -p1 -b .disablewarningcrash
 %patch9 -p1 -b .compositing-wm
-%patch11 -p1 -b .popup
 %patch13 -p1 -b .prevent-fade-ltsp
 %patch14 -p1 -b .splash-hide
 %patch16 -p1 -b .enable-sound
