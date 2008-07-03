@@ -41,6 +41,7 @@ BuildRequires:  tcp_wrappers-devel
 BuildRequires:	libGConf2-devel >= 1.2.1
 BuildRequires:  libgnomeui2-devel >= %{req_libgnomeui_version}
 BuildRequires:  libglade2.0-devel
+BuildRequires:  startup-notification-devel
 BuildRequires:  gnome-settings-daemon-devel
 BuildRequires:  policykit-gnome-devel
 BuildRequires:  avahi-glib-devel avahi-client-devel
