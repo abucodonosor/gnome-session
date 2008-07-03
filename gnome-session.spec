@@ -2,7 +2,7 @@
 
 Summary:        The gnome desktop programs for the GNOME GUI desktop environment
 Name:           gnome-session
-Version: 2.22.3
+Version: 2.23.4.1
 Release:        %mkrel 1
 License:        GPLv2+
 Group:          Graphical desktop/GNOME
@@ -41,9 +41,10 @@ BuildRequires:  tcp_wrappers-devel
 BuildRequires:	libGConf2-devel >= 1.2.1
 BuildRequires:  libgnomeui2-devel >= %{req_libgnomeui_version}
 BuildRequires:  gnome-settings-daemon-devel
+BuildRequires:  policykit-gnome-devel
 BuildRequires:  avahi-glib-devel avahi-client-devel
 BuildRequires:  libgcrypt-devel
-BuildRequires: intltool
+BuildRequires: intltool >= 0.40.0
 BuildRequires: desktop-file-utils
 BuildRequires: automake1.9
 
@@ -57,14 +58,17 @@ when you log into GNOME.
 
 %prep
 %setup -q
-%patch3 -p1 -b .defaultsession
-%patch4 -p1 -b .splashicons
+#%patch3 -p1 -b .defaultsession
+#%patch4 -p1 -b .splashicons
 %patch6 -p1 -b .splash
-%patch8 -p1 -b .disablewarningcrash
-%patch9 -p1 -b .compositing-wm
-%patch13 -p1 -b .prevent-fade-ltsp
-%patch14 -p1 -b .splash-hide
-%patch16 -p1 -b .enable-sound
+#%patch8 -p1 -b .disablewarningcrash
+cd data
+%patch9 -p2 -b .compositing-wm
+cd ..
+#%patch11 -p1 -b .popup
+#%patch13 -p1 -b .prevent-fade-ltsp
+#%patch14 -p1 -b .splash-hide
+#%patch16 -p1 -b .enable-sound
 
 %build
 
@@ -148,7 +152,10 @@ fi
 %{_datadir}/applications/*
 %{_datadir}/gnome/*
 %{_datadir}/pixmaps/*
+%{_datadir}/%name
 %_datadir/icons/hicolor/*/apps/*
 %{_mandir}/*/*
-
+%dir %_libdir/gnome-session
+%dir %_libdir/gnome-session/helpers
+%_libdir/gnome-session/helpers/*
 
