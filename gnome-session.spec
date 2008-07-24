@@ -3,7 +3,7 @@
 Summary:        The gnome desktop programs for the GNOME GUI desktop environment
 Name:           gnome-session
 Version: 2.23.5
-Release:        %mkrel 1
+Release:        %mkrel 2
 License:        GPLv2+
 Group:          Graphical desktop/GNOME
 Source0:        ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
@@ -28,6 +28,8 @@ Patch14:	gnome-session-2.20-splash-hide.patch
 Patch16:	gnome-session-enable-sound-by-default.patch
 # (fc) 2.23.4.1-2mdv use new dbus activation session environment API (GNOME bug #360475)
 Patch17:	gnome-session-2.23.4.1-activation-environment.patch
+# (fc) 2.23.5-2mdv allow to really disable login sound (GNOME bug #544540)
+Patch18:	gnome-session-2.23.5-fixnosound.patch
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-root
 URL:            http://www.gnome.org/softwaremap/projects/gnome-session/
@@ -74,6 +76,7 @@ cd ..
 #%patch14 -p1 -b .splash-hide
 #%patch16 -p1 -b .enable-sound
 %patch17 -p1 -b .activation-environment
+%patch18 -p1 -b .fixnosound
 
 %build
 
