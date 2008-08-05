@@ -3,29 +3,17 @@
 Summary:        The gnome desktop programs for the GNOME GUI desktop environment
 Name:           gnome-session
 Version: 2.23.6
-Release:        %mkrel 1
+Release:        %mkrel 2
 License:        GPLv2+
 Group:          Graphical desktop/GNOME
 Source0:        ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
 Source1:        gnome-session-startgnome
 Source2:	gnome-session-gnomerc
 Source3:        gnome-splash.png
-# (fc) 2.0.7-2mdk add pam-panel-icon and eggcups to default session
-Patch3:		gnome-session-2.17.90-defaultsession.patch
-# (fc) 2.2.0.2-2mdk add some icons to splashscreen
-Patch4:		gnome-session-2.18.0-splashicons.patch
 # (fc) 2.4.2-3mdk use our own splash
 Patch6:		gnome-session-2.17.90-splash.patch
-# (fc) 2.15.1-1mdv disable crash on warning
-Patch8:		gnome-session-2.13.4-no-crashes.patch
 # (blino) 2.16.1-2mdv allow to pass sm client id to compositing wm
-Patch9:		gnome-session-2.16.1-compositing-wm.patch
-# (fc) 2.20.0-1mdv don't fade logout on LTSP client (Ubuntu)
-Patch13:	gnome-session-2.20-dont-fade-ltsp.patch
-# (fc) 2.20.0-1mdv prevent splash from staying too long on screen (Ubuntu)
-Patch14:	gnome-session-2.20-splash-hide.patch
-# (fc) 2.20.2-2mdv always enable sound server (since we use PulseAudio)
-Patch16:	gnome-session-enable-sound-by-default.patch
+Patch9:		gnome-session-2.23.6-compositing-wm.patch
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-root
 URL:            http://www.gnome.org/softwaremap/projects/gnome-session/
@@ -60,17 +48,8 @@ when you log into GNOME.
 
 %prep
 %setup -q
-#%patch3 -p1 -b .defaultsession
-#%patch4 -p1 -b .splashicons
 %patch6 -p1 -b .splash
-#%patch8 -p1 -b .disablewarningcrash
-cd data
 %patch9 -p2 -b .compositing-wm
-cd ..
-#%patch11 -p1 -b .popup
-#%patch13 -p1 -b .prevent-fade-ltsp
-#%patch14 -p1 -b .splash-hide
-#%patch16 -p1 -b .enable-sound
 
 %build
 
