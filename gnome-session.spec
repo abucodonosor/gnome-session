@@ -49,7 +49,7 @@ when you log into GNOME.
 %prep
 %setup -q
 %patch6 -p1 -b .splash
-%patch9 -p2 -b .compositing-wm
+%patch9 -p1 -b .compositing-wm
 
 %build
 
