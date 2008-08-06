@@ -3,7 +3,7 @@
 Summary:        The gnome desktop programs for the GNOME GUI desktop environment
 Name:           gnome-session
 Version: 2.23.6
-Release:        %mkrel 2
+Release:        %mkrel 3
 License:        GPLv2+
 Group:          Graphical desktop/GNOME
 Source0:        ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
@@ -89,6 +89,9 @@ install -m 0755 %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/gnome/gnomerc
 # gw these produce rpmlint errors:
 rm -rf %buildroot%_datadir/locale/{be@latin}
 %find_lang %{name}-2.0
+
+# login / logout sound is handled by libcanberra now
+rm -f $RPM_BUILD_ROOT%{_datadir}/gnome/autostart/gnome-login-sound.desktop $RPM_BUILD_ROOT%{_datadir}/gnome/shutdown/gnome-logout-sound.desktop
 
 # remove unpackaged files
 rm -rf $RPM_BUILD_ROOT%{_bindir}/gnome-smproxy $RPM_BUILD_ROOT%{_datadir}/xsessions
