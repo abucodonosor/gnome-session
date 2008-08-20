@@ -2,8 +2,8 @@
 
 Summary:        The gnome desktop programs for the GNOME GUI desktop environment
 Name:           gnome-session
-Version: 2.23.6
-Release:        %mkrel 4
+Version: 2.23.90
+Release:        %mkrel 1
 License:        GPLv2+
 Group:          Graphical desktop/GNOME
 Source0:        ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
@@ -14,8 +14,6 @@ Source3:        gnome-splash.png
 Patch6:		gnome-session-2.17.90-splash.patch
 # (blino) 2.16.1-2mdv allow to pass sm client id to compositing wm
 Patch9:		gnome-session-2.23.6-compositing-wm.patch
-# (fc) 2.23.6-4mdv splash autoexit after last client timeouts (GNOME bug #546410)
-Patch10:	gnome-session-2.23.6-autoexitsplash.patch
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-root
 URL:            http://www.gnome.org/softwaremap/projects/gnome-session/
@@ -52,7 +50,6 @@ when you log into GNOME.
 %setup -q
 %patch6 -p1 -b .splash
 %patch9 -p1 -b .compositing-wm
-%patch10 -p1 -b .autoexitsplash
 
 %build
 
