@@ -2,8 +2,8 @@
 
 Summary:        The gnome desktop programs for the GNOME GUI desktop environment
 Name:           gnome-session
-Version: 2.23.90
-Release:        %mkrel 3
+Version: 2.23.91
+Release:        %mkrel 1
 License:        GPLv2+
 Group:          Graphical desktop/GNOME
 Source0:        ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
@@ -14,12 +14,6 @@ Source3:        gnome-splash.png
 Patch6:		gnome-session-2.17.90-splash.patch
 # (blino) 2.16.1-2mdv allow to pass sm client id to compositing wm
 Patch9:		gnome-session-2.23.6-compositing-wm.patch
-# (fc) 2.23.90-2mdv make sure non-fatal init error are not fatal (Mdv bug #43029) (GNOME bug #548980)
-Patch10:	gnome-session-2.23.90-fixfatal.patch
-# (fc) 2.23.90-2mdv don't set a11y gtk modules if a11y registry could not be started (GNOME bug #548982)
-Patch11:	gnome-session-2.23.90-a11yerror.patch
-# (fc) restore GNOME_DESKTOP_SESSION_ID env variable (GNOME bug #542880) (Ghee Teo)
-Patch12:	gnome-session-2.23.90-sessionid.patch
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-root
 URL:            http://www.gnome.org/softwaremap/projects/gnome-session/
@@ -56,9 +50,6 @@ when you log into GNOME.
 %setup -q
 %patch6 -p1 -b .splash
 %patch9 -p1 -b .compositing-wm
-%patch10 -p1 -b .fixfatal
-%patch11 -p1 -b .a11yerror
-%patch12 -p1 -b .sessionid
 
 %build
 
