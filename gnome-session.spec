@@ -3,17 +3,22 @@
 Summary:        The gnome desktop programs for the GNOME GUI desktop environment
 Name:           gnome-session
 Version: 2.23.91
-Release:        %mkrel 1
+Release:        %mkrel 2
 License:        GPLv2+
 Group:          Graphical desktop/GNOME
 Source0:        ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
 Source1:        gnome-session-startgnome
 Source2:	gnome-session-gnomerc
 Source3:        gnome-splash.png
+Source4:	gnome-wm.desktop
 # (fc) 2.4.2-3mdk use our own splash
 Patch6:		gnome-session-2.17.90-splash.patch
 # (blino) 2.16.1-2mdv allow to pass sm client id to compositing wm
 Patch9:		gnome-session-2.23.6-compositing-wm.patch
+# (fc) 2.23.91-2mdv fix gnome-wm startup
+Patch10:	gnome-session-2.23.91-gnome-wm.patch
+# (fc) 2.23.91-2mdv fix default session failsafe (SVN)
+Patch11:	gnome-session-2.23.91-defaultsession.patch
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-root
 URL:            http://www.gnome.org/softwaremap/projects/gnome-session/
@@ -50,6 +55,8 @@ when you log into GNOME.
 %setup -q
 %patch6 -p1 -b .splash
 %patch9 -p1 -b .compositing-wm
+%patch10 -p1 -b .gnome-wm
+%patch11 -p1 -b .defaultsession
 
 %build
 
@@ -90,11 +97,12 @@ install -m 0755 %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/gnome/gnomerc
 rm -rf %buildroot%_datadir/locale/{be@latin}
 %find_lang %{name}-2.0
 
-# login / logout sound is handled by libcanberra now
-rm -f $RPM_BUILD_ROOT%{_datadir}/gnome/autostart/gnome-login-sound.desktop $RPM_BUILD_ROOT%{_datadir}/gnome/shutdown/gnome-logout-sound.desktop
+
+# restore gnome-wm.desktop file
+install -m644 %{SOURCE4} $RPM_BUILD_ROOT%{_datadir}/applications/gnome-wm.desktop
 
 # remove unpackaged files
-rm -rf $RPM_BUILD_ROOT%{_bindir}/gnome-smproxy $RPM_BUILD_ROOT%{_datadir}/xsessions
+rm -rf $RPM_BUILD_ROOT%{_datadir}/xsessions
 
 
 %define schemas gnome-session
