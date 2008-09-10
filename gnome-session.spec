@@ -3,7 +3,7 @@
 Summary:        The gnome desktop programs for the GNOME GUI desktop environment
 Name:           gnome-session
 Version: 2.23.92
-Release:        %mkrel 1
+Release:        %mkrel 2
 License:        GPLv2+
 Group:          Graphical desktop/GNOME
 Source0:        ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
@@ -17,6 +17,8 @@ Patch6:		gnome-session-2.17.90-splash.patch
 Patch9:		gnome-session-2.23.6-compositing-wm.patch
 # (fc) 2.23.91-2mdv set gnome-wm as default window manager
 Patch10:	gnome-session-2.23.92-gnome-wm.patch
+# (fc) 2.23.92-2mdv fix displaying username in non-UTF8 locale
+Patch11:	gnome-session-2.23.92-nonutf8.patch
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-root
 URL:            http://www.gnome.org/softwaremap/projects/gnome-session/
@@ -54,6 +56,7 @@ when you log into GNOME.
 %patch6 -p1 -b .splash
 %patch9 -p1 -b .compositing-wm
 %patch10 -p1 -b .gnome-wm
+%patch11 -p1 -b .nonutf8
 
 %build
 
