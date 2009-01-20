@@ -27,6 +27,7 @@ Requires:	usermode >= 1.63
 Requires:	gnome-user-docs
 Requires:	gnome-settings-daemon
 BuildRequires:  x11-xtrans-devel
+BuildRequires:  libxtst-devel
 BuildRequires:	gnome-keyring-devel >= 2.21.92
 BuildRequires:	usermode-consoleonly
 BuildRequires:  tcp_wrappers-devel
