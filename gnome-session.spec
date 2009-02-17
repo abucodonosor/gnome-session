@@ -59,7 +59,7 @@ when you log into GNOME.
 
 %build
 
-%configure2_5x --with-reboot-command=%{_bindir}/reboot --with-halt-command=%{_bindir}/poweroff
+%configure2_5x
 %make
 
 
