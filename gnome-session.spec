@@ -2,7 +2,7 @@
 
 Summary:        The gnome desktop programs for the GNOME GUI desktop environment
 Name:           gnome-session
-Version: 2.26.1
+Version: 2.26.2
 Release:        %mkrel 1
 License:        GPLv2+
 Group:          Graphical desktop/GNOME
@@ -14,7 +14,7 @@ Source4:	gnome-wm.desktop
 # (fc) 2.4.2-3mdk use our own splash
 Patch6:		gnome-session-2.17.90-splash.patch
 # (blino) 2.16.1-2mdv allow to pass sm client id to compositing wm
-Patch9:		gnome-session-2.23.6-compositing-wm.patch
+Patch9:		gnome-session-2.26.2-compositing-wm.patch
 # (fc) 2.23.91-2mdv set gnome-wm as default window manager
 Patch10:	gnome-session-2.23.92-gnome-wm.patch
 
