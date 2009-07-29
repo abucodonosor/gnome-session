@@ -2,7 +2,7 @@
 
 Summary:        The gnome desktop programs for the GNOME GUI desktop environment
 Name:           gnome-session
-Version: 2.27.4
+Version: 2.27.5
 Release:        %mkrel 1
 License:        GPLv2+
 Group:          Graphical desktop/GNOME
@@ -12,11 +12,9 @@ Source2:	gnome-session-gnomerc
 Source3:        gnome-splash.png
 Source4:	gnome-wm.desktop
 # (fc) 2.4.2-3mdk use our own splash
-Patch6:		gnome-session-2.17.90-splash.patch
+Patch6:		gnome-session-2.27.5-splash.patch
 # (blino) 2.16.1-2mdv allow to pass sm client id to compositing wm
 Patch9:		gnome-session-2.26.2-compositing-wm.patch
-# (fc) 2.23.91-2mdv set gnome-wm as default window manager
-Patch10:	gnome-session-2.23.92-gnome-wm.patch
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-root
 URL:            http://www.gnome.org/softwaremap/projects/gnome-session/
@@ -26,6 +24,7 @@ Requires:	desktop-common-data
 Requires:	usermode >= 1.63
 Requires:	gnome-user-docs
 Requires:	gnome-settings-daemon
+Requires:	devicekit-power
 BuildRequires:  x11-xtrans-devel
 BuildRequires:  libxtst-devel
 BuildRequires:	gnome-keyring-devel >= 2.21.92
@@ -55,12 +54,10 @@ when you log into GNOME.
 %setup -q
 %patch6 -p1 -b .splash
 %patch9 -p1 -b .compositing-wm
-%patch10 -p1 -b .gnome-wm
-
 
 %build
 
-%configure2_5x
+%configure2_5x --with-default-wm=gnome-wm --enable-splash
 %make
 
 
