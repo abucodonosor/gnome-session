@@ -35,6 +35,7 @@ BuildRequires:  libgnomeui2-devel >= %{req_libgnomeui_version}
 BuildRequires:  libglade2.0-devel
 BuildRequires:  startup-notification-devel
 BuildRequires:  gnome-settings-daemon-devel
+BuildRequires: devicekit-power-devel >= 008
 BuildRequires:  policykit-gnome-devel
 BuildRequires:  avahi-glib-devel avahi-client-devel
 BuildRequires:  libgcrypt-devel
