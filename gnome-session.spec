@@ -2,7 +2,7 @@
 
 Summary:        The gnome desktop programs for the GNOME GUI desktop environment
 Name:           gnome-session
-Version: 2.27.5
+Version: 2.27.91
 Release:        %mkrel 1
 License:        GPLv2+
 Group:          Graphical desktop/GNOME
@@ -140,10 +140,10 @@ fi
 %{_sysconfdir}/gconf/schemas/*
 %{_sysconfdir}/xdg/autostart/at-spi-registryd-wrapper.desktop
 %{_sysconfdir}/xdg/autostart/gnome-settings-daemon-helper.desktop
+%{_sysconfdir}/xdg/autostart/gnome-session-splash.desktop
 %{_bindir}/*
 %{_datadir}/applications/*
 %{_datadir}/pixmaps/*
-%{_datadir}/gnome/autostart/gnome-session-splash.desktop
 %{_datadir}/%name
 %_datadir/icons/hicolor/*/apps/*
 %{_mandir}/*/*
