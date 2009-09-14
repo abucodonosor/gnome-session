@@ -138,7 +138,6 @@ fi
 %config(noreplace) %{_sysconfdir}/X11/wmsession.d/*
 %{_sysconfdir}/gnome/gnomerc
 %{_sysconfdir}/gconf/schemas/*
-%{_sysconfdir}/xdg/autostart/at-spi-registryd-wrapper.desktop
 %{_sysconfdir}/xdg/autostart/gnome-settings-daemon-helper.desktop
 %{_sysconfdir}/xdg/autostart/gnome-session-splash.desktop
 %{_bindir}/*
