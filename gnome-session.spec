@@ -1,7 +1,7 @@
 Summary:        The gnome desktop programs for the GNOME GUI desktop environment
 Name:           gnome-session
 Version: 2.28.0
-Release:        %mkrel 4
+Release:        %mkrel 5
 License:        GPLv2+
 Group:          Graphical desktop/GNOME
 Source0:        ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
@@ -29,7 +29,7 @@ Requires:	gnome-settings-daemon
 Requires:	devicekit-power
 BuildRequires:  x11-xtrans-devel
 BuildRequires:  libxtst-devel
-BuildRequires:	gnome-keyring-devel >= 2.21.92
+BuildRequires:	libgnome-keyring-devel >= 2.21.92
 BuildRequires:	usermode-consoleonly
 BuildRequires:  tcp_wrappers-devel
 BuildRequires:	libGConf2-devel >= 1.2.1
