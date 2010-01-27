@@ -1,7 +1,7 @@
 Summary:        The gnome desktop programs for the GNOME GUI desktop environment
 Name:           gnome-session
-Version: 2.28.0
-Release:        %mkrel 5
+Version: 2.29.6
+Release:        %mkrel 1
 License:        GPLv2+
 Group:          Graphical desktop/GNOME
 Source0:        ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
@@ -15,8 +15,6 @@ Patch6:		gnome-session-2.27.5-splash.patch
 Patch9:		gnome-session-2.26.2-compositing-wm.patch
 # (fc) 2.28.0-2mdv fix crash at logout (GNOME bug #590828)
 Patch10:	gnome-session-2.28.0-fixcrash.patch
-# (fc) 2.28.0-3mdv fix crash in xsmp_stop (GNOME bug #598211)
-Patch11:	gnome-session-2.28.0-fix-xsmp-crash.patch
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-root
 URL:            http://www.gnome.org/softwaremap/projects/gnome-session/
@@ -57,7 +55,6 @@ when you log into GNOME.
 %patch6 -p1 -b .splash
 %patch9 -p1 -b .compositing-wm
 %patch10 -p1 -b .fixcrash
-%patch11 -p1 -b .fix-xsmp-crash
 
 %build
 
