@@ -34,7 +34,7 @@ BuildRequires:	libGConf2-devel >= 1.2.1
 BuildRequires:  gtk+2-devel
 BuildRequires:  startup-notification-devel
 BuildRequires:  gnome-settings-daemon-devel
-BuildRequires: devicekit-power-devel >= 008
+BuildRequires:	UPower-devel
 BuildRequires:  policykit-gnome-devel
 BuildRequires:  avahi-glib-devel avahi-client-devel
 BuildRequires:  libgcrypt-devel
