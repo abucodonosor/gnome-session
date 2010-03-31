@@ -1,7 +1,7 @@
 Summary:        The gnome desktop programs for the GNOME GUI desktop environment
 Name:           gnome-session
 Version: 2.30.0
-Release:        %mkrel 1
+Release:        %mkrel 2
 License:        GPLv2+
 Group:          Graphical desktop/GNOME
 Source0:        ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
@@ -21,10 +21,9 @@ URL:            http://www.gnome.org/softwaremap/projects/gnome-session/
 Requires:	GConf2 >= 1.2.1
 Requires:	GConf2-sanity-check
 Requires:	desktop-common-data
-Requires:	usermode >= 1.63
 Requires:	gnome-user-docs
 Requires:	gnome-settings-daemon
-Requires:	devicekit-power
+Requires:	%{name}-bin >= %{version}-%{release}
 BuildRequires:  x11-xtrans-devel
 BuildRequires:  libxtst-devel
 BuildRequires:	libgnome-keyring-devel >= 2.21.92
@@ -49,6 +48,16 @@ window manager for the X Window System.
 
 The GNOME Session Manager restores a set session (group of applications)
 when you log into GNOME.
+
+%package bin
+Group:          %{group}
+Summary:        %{summary}
+Conflicts: gnome-session < 2.30.0-2mdv
+
+%description bin
+This package contains the binaries for the GNOME Session Manager, but 
+no startup scripts. It is meant for applications such as GDM that use 
+gnome-session internally.
 
 %prep
 %setup -q
@@ -105,20 +114,22 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/xsessions
 
 %define schemas gnome-session
 
+%if %mdkversion < 200900
+%post bin
+%post_install_gconf_schemas %{schemas}
+%endif
+
 %post
 if [ "$1" = "2" -a -r /etc/sysconfig/desktop ]; then
   sed -i -e "s|^DESKTOP=Gnome$|DESKTOP=GNOME|g" /etc/sysconfig/desktop
 fi
-%if %mdkversion < 200900
-%post_install_gconf_schemas %{schemas}
-%endif
 %{make_session}
 %if %mdkversion < 200900
 %{update_menus}
 %update_icon_cache hicolor
 %endif
 
-%preun
+%preun bin
 %preun_uninstall_gconf_schemas %{schemas}
 
 %postun
@@ -131,21 +142,30 @@ fi
 %clean
 [ -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != / ] && rm -rf $RPM_BUILD_ROOT
 
+%files bin
+%defattr (-, root, root)
+%{_sysconfdir}/gconf/schemas/*
+%{_bindir}/gnome-session
+%{_mandir}/*/gnome-session.*
+%{_datadir}/%name
 
 %files -f %{name}-2.0.lang
 %defattr (-, root, root)
 %doc AUTHORS COPYING ChangeLog NEWS README
 %config(noreplace) %{_sysconfdir}/X11/wmsession.d/*
 %{_sysconfdir}/gnome/gnomerc
-%{_sysconfdir}/gconf/schemas/*
 %{_sysconfdir}/xdg/autostart/gnome-settings-daemon-helper.desktop
 %{_sysconfdir}/xdg/autostart/gnome-session-splash.desktop
-%{_bindir}/*
+%{_bindir}/startgnome
+%{_bindir}/gnome-session-properties
+%{_bindir}/gnome-wm
+%{_bindir}/gnome-session-save
 %{_datadir}/applications/*
 %{_datadir}/pixmaps/*
-%{_datadir}/%name
 %_datadir/icons/hicolor/*/apps/*
-%{_mandir}/*/*
+%{_mandir}/*/gnome-wm.*
+%{_mandir}/*/gnome-session-properties.*
+%{_mandir}/*/gnome-session-save.*
 %dir %_libdir/gnome-session
 %dir %_libdir/gnome-session/helpers
 %_libdir/gnome-session/helpers/*
