@@ -1,7 +1,7 @@
 Summary:        The gnome desktop programs for the GNOME GUI desktop environment
 Name:           gnome-session
 Version: 2.30.0
-Release:        %mkrel 2
+Release:        %mkrel 3
 License:        GPLv2+
 Group:          Graphical desktop/GNOME
 Source0:        ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
@@ -26,7 +26,6 @@ Requires:	gnome-settings-daemon
 Requires:	%{name}-bin >= %{version}-%{release}
 BuildRequires:  x11-xtrans-devel
 BuildRequires:  libxtst-devel
-BuildRequires:	libgnome-keyring-devel >= 2.21.92
 BuildRequires:	usermode-consoleonly
 BuildRequires:  tcp_wrappers-devel
 BuildRequires:	libGConf2-devel >= 1.2.1
@@ -34,7 +33,6 @@ BuildRequires:  gtk+2-devel
 BuildRequires:  startup-notification-devel
 BuildRequires:  gnome-settings-daemon-devel
 BuildRequires:	UPower-devel
-BuildRequires:  policykit-gnome-devel
 BuildRequires:  avahi-glib-devel avahi-client-devel
 BuildRequires:  libgcrypt-devel
 BuildRequires: intltool >= 0.40.0
