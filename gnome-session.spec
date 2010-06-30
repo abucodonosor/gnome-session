@@ -1,7 +1,7 @@
 Summary:        The gnome desktop programs for the GNOME GUI desktop environment
 Name:           gnome-session
 Version: 2.30.2
-Release:        %mkrel 1
+Release:        %mkrel 2
 License:        GPLv2+
 Group:          Graphical desktop/GNOME
 Source0:        ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
@@ -49,7 +49,7 @@ when you log into GNOME.
 %package bin
 Group:          %{group}
 Summary:        %{summary}
-Conflicts: gnome-session < 2.30.0-2mdv
+Conflicts: gnome-session < 2.30.2-2mdv
 Requires:	GConf2-sanity-check
 
 %description bin
@@ -124,6 +124,10 @@ fi
 %{make_session}
 %if %mdkversion < 200900
 %{update_menus}
+%endif
+
+%if %mdkversion < 200900
+%post bin
 %update_icon_cache hicolor
 %endif
 
@@ -134,6 +138,10 @@ fi
 %{make_session}
 %if %mdkversion < 200900
 %{clean_menus}
+%endif
+
+%if %mdkversion < 200900
+%postun bin
 %clean_icon_cache hicolor
 %endif
 
@@ -146,6 +154,7 @@ fi
 %{_bindir}/gnome-session
 %{_mandir}/*/gnome-session.*
 %{_datadir}/%name
+%_datadir/icons/hicolor/*/apps/*
 
 %files -f %{name}-2.0.lang
 %defattr (-, root, root)
@@ -160,7 +169,6 @@ fi
 %{_bindir}/gnome-session-save
 %{_datadir}/applications/*
 %{_datadir}/pixmaps/*
-%_datadir/icons/hicolor/*/apps/*
 %{_mandir}/*/gnome-wm.*
 %{_mandir}/*/gnome-session-properties.*
 %{_mandir}/*/gnome-session-save.*
