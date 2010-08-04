@@ -1,16 +1,13 @@
 Summary:        The gnome desktop programs for the GNOME GUI desktop environment
 Name:           gnome-session
-Version: 2.31.2
+Version: 2.31.6
 Release:        %mkrel 1
 License:        GPLv2+
 Group:          Graphical desktop/GNOME
 Source0:        ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
 Source1:        gnome-session-startgnome
 Source2:	gnome-session-gnomerc
-Source3:        gnome-splash.png
 Source4:	gnome-wm.desktop
-# (fc) 2.4.2-3mdk use our own splash
-Patch6:		gnome-session-2.27.5-splash.patch
 # (blino) 2.16.1-2mdv allow to pass sm client id to compositing wm
 Patch9:		gnome-session-2.26.2-compositing-wm.patch
 # (fc) 2.28.0-2mdv fix crash at logout (GNOME bug #590828)
@@ -59,9 +56,7 @@ gnome-session internally.
 
 %prep
 %setup -q
-%patch6 -p1 -b .splash
-%patch9 -p1 -b .compositing-wm
-%patch10 -p1 -b .fixcrash
+%apply_patches
 
 %build
 
@@ -73,8 +68,6 @@ gnome-session internally.
 rm -rf $RPM_BUILD_ROOT
 
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std
-
-cp %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/pixmaps/splash/mdv-gnome-splash.png
 
 # wmsession session file
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/X11/wmsession.d
@@ -161,18 +154,12 @@ fi
 %doc AUTHORS COPYING ChangeLog NEWS README
 %config(noreplace) %{_sysconfdir}/X11/wmsession.d/*
 %{_sysconfdir}/gnome/gnomerc
-%{_sysconfdir}/xdg/autostart/gnome-settings-daemon-helper.desktop
-%{_sysconfdir}/xdg/autostart/gnome-session-splash.desktop
 %{_bindir}/startgnome
 %{_bindir}/gnome-session-properties
 %{_bindir}/gnome-wm
 %{_bindir}/gnome-session-save
 %{_datadir}/applications/*
-%{_datadir}/pixmaps/*
 %{_mandir}/*/gnome-wm.*
 %{_mandir}/*/gnome-session-properties.*
 %{_mandir}/*/gnome-session-save.*
-%dir %_libdir/gnome-session
-%dir %_libdir/gnome-session/helpers
-%_libdir/gnome-session/helpers/*
 
