@@ -21,10 +21,12 @@ Requires:	gnome-user-docs
 Requires:	gnome-settings-daemon
 Requires:	%{name}-bin >= %{version}-%{release}
 BuildRequires:  x11-xtrans-devel
+BuildRequires:	libsm-devel
 BuildRequires:  libxtst-devel
 BuildRequires:	usermode-consoleonly
 BuildRequires:  tcp_wrappers-devel
 BuildRequires:	libGConf2-devel >= 1.2.1
+BuildRequires:	GConf2
 BuildRequires:  gtk+2-devel
 BuildRequires:  startup-notification-devel
 BuildRequires:  gnome-settings-daemon-devel
