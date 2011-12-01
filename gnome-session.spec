@@ -67,13 +67,13 @@ gnome-session internally.
 
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std
 
 # wmsession session file
-mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/X11/wmsession.d
-cat << EOF > $RPM_BUILD_ROOT%{_sysconfdir}/X11/wmsession.d/02GNOME
+mkdir -p %{buildroot}%{_sysconfdir}/X11/wmsession.d
+cat << EOF > %{buildroot}%{_sysconfdir}/X11/wmsession.d/02GNOME
 NAME=GNOME
 ICON=gnome-logo-icon-transparent.png
 DESC=GNOME Environment
@@ -86,23 +86,23 @@ desktop-file-install --vendor="" \
   --add-category="X-MandrivaLinux-System-Configuration-GNOME-Advanced" \
   --add-category="GTK" \
   --add-category="GNOME" \
-  --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*
+  --dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
 
 
-install -m 0755 %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}/startgnome
+install -m 0755 %{SOURCE1} %{buildroot}%{_bindir}/startgnome
 
-mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/gnome
-install -m 0755 %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/gnome/gnomerc
+mkdir -p %{buildroot}%{_sysconfdir}/gnome
+install -m 0755 %{SOURCE2} %{buildroot}%{_sysconfdir}/gnome/gnomerc
 # gw these produce rpmlint errors:
 rm -rf %buildroot%_datadir/locale/{be@latin}
 %find_lang %{name}-2.0
 
 
 # restore gnome-wm.desktop file
-install -m644 %{SOURCE4} $RPM_BUILD_ROOT%{_datadir}/applications/gnome-wm.desktop
+install -m644 %{SOURCE4} %{buildroot}%{_datadir}/applications/gnome-wm.desktop
 
 # remove unpackaged files
-rm -rf $RPM_BUILD_ROOT%{_datadir}/xsessions
+rm -rf %{buildroot}%{_datadir}/xsessions
 
 
 %define schemas gnome-session
@@ -141,7 +141,7 @@ fi
 %endif
 
 %clean
-[ -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != / ] && rm -rf $RPM_BUILD_ROOT
+[ -n "%{buildroot}" -a "%{buildroot}" != / ] && rm -rf %{buildroot}
 
 %files bin
 %defattr (-, root, root)
