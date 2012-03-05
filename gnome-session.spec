@@ -1,41 +1,42 @@
-Summary:        The gnome desktop programs for the GNOME GUI desktop environment
-Name:           gnome-session
-Version: 2.32.1
-Release:        %mkrel 2
-License:        GPLv2+
-Group:          Graphical desktop/GNOME
-Source0:        ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
-Source1:        gnome-session-startgnome
+Summary:	The gnome desktop programs for the GNOME GUI desktop environment
+Name:		gnome-session
+Version:	3.2.1
+Release:	1
+License:	GPLv2+
+Group:		Graphical desktop/GNOME
+URL:		http://www.gnome.org/softwaremap/projects/gnome-session/
+Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.xz
+Source1:	gnome-session-startgnome
 Source2:	gnome-session-gnomerc
-Source4:	gnome-wm.desktop
-# (blino) 2.16.1-2mdv allow to pass sm client id to compositing wm
-Patch9:		gnome-session-2.26.2-compositing-wm.patch
-# (fc) 2.28.0-2mdv fix crash at logout (GNOME bug #590828)
-Patch10:	gnome-session-2.28.0-fixcrash.patch
+Source3:	gnome-session-startgnomeclassic
 
-BuildRoot:      %{_tmppath}/%{name}-%{version}-root
-URL:            http://www.gnome.org/softwaremap/projects/gnome-session/
+BuildRequires:	desktop-file-utils
+BuildRequires:	gtk-doc
+BuildRequires:	intltool >= 0.40.0
+BuildRequires:	xmlto
+BuildRequires:	pkgconfig(dbus-glib-1) >= 0.76
+BuildRequires:	pkgconfig(gconf-2.0)
+BuildRequires:	pkgconfig(gio-2.0) >= 2.28.0
+BuildRequires:	pkgconfig(gl)
+BuildRequires:	pkgconfig(glib-2.0) >= 2.28.0
+BuildRequires:	pkgconfig(gtk+-3.0) >= 2.90.7
+BuildRequires:	pkgconfig(ice)
+BuildRequires:	pkgconfig(json-glib-1.0) >= 0.10
+BuildRequires:	pkgconfig(sm)
+BuildRequires:	pkgconfig(upower-glib) >= 0.9.0
+BuildRequires:	pkgconfig(xau)
+BuildRequires:	pkgconfig(xcomposite)
+BuildRequires:	pkgconfig(xext)
+BuildRequires:	pkgconfig(xrender)
+BuildRequires:	pkgconfig(xtst)
+BuildRequires:	x11-xtrans-devel
+BuildRequires:	tcp_wrappers-devel
+
 Requires:	GConf2 >= 1.2.1
 Requires:	desktop-common-data
 Requires:	gnome-user-docs
 Requires:	gnome-settings-daemon
 Requires:	%{name}-bin >= %{version}-%{release}
-BuildRequires:  x11-xtrans-devel
-BuildRequires:	libsm-devel
-BuildRequires:  libxtst-devel
-BuildRequires:	usermode-consoleonly
-BuildRequires:  tcp_wrappers-devel
-BuildRequires:	libGConf2-devel >= 1.2.1
-BuildRequires:	GConf2
-BuildRequires:  gtk+2-devel
-BuildRequires:  startup-notification-devel
-BuildRequires:  gnome-settings-daemon-devel
-BuildRequires:	UPower-devel
-BuildRequires:  avahi-glib-devel avahi-client-devel
-BuildRequires:  libgcrypt-devel
-BuildRequires: intltool >= 0.40.0
-BuildRequires: desktop-file-utils
-BuildRequires: automake1.9
 
 %description
 GNOME (GNU Network Object Model Environment) is a user-friendly
@@ -46,10 +47,10 @@ The GNOME Session Manager restores a set session (group of applications)
 when you log into GNOME.
 
 %package bin
-Group:          %{group}
-Summary:        %{summary}
+Group: %{group}
+Summary: %{summary}
 Conflicts: gnome-session < 2.30.2-2mdv
-Requires:	GConf2-sanity-check
+Requires: GConf2-sanity-check
 
 %description bin
 This package contains the binaries for the GNOME Session Manager, but 
@@ -62,14 +63,13 @@ gnome-session internally.
 
 %build
 
-%configure2_5x --with-default-wm=gnome-wm --enable-splash
-%make
+%configure2_5x
 
+%make
 
 %install
 rm -rf %{buildroot}
-
-GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std
+%makeinstall_std
 
 # wmsession session file
 mkdir -p %{buildroot}%{_sysconfdir}/X11/wmsession.d
@@ -82,86 +82,62 @@ SCRIPT:
 exec %{_bindir}/startgnome
 EOF
 
-desktop-file-install --vendor="" \
-  --add-category="X-MandrivaLinux-System-Configuration-GNOME-Advanced" \
-  --add-category="GTK" \
-  --add-category="GNOME" \
-  --dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
+cat << EOF > %{buildroot}%{_sysconfdir}/X11/wmsession.d/03GNOMECLASSIC
+NAME=Gnome Classic
+ICON=gnome-logo-icon-transparent.png
+DESC=GNOME 3 with separate panel and window manager
+EXEC=%{_bindir}/startgnomeclassic
+SCRIPT:
+exec %{_bindir}/startgnomeclassic
+EOF
 
+desktop-file-install --vendor="" \
+	--add-category="X-MandrivaLinux-System-Configuration-GNOME-Advanced" \
+	--add-category="GTK" \
+	--add-category="GNOME" \
+	--dir %{buildroot}%{_datadir}/applications \
+	%{buildroot}%{_datadir}/applications/*
 
 install -m 0755 %{SOURCE1} %{buildroot}%{_bindir}/startgnome
+install -m 0755 %{SOURCE3} %{buildroot}%{_bindir}/startgnomeclassic
 
 mkdir -p %{buildroot}%{_sysconfdir}/gnome
 install -m 0755 %{SOURCE2} %{buildroot}%{_sysconfdir}/gnome/gnomerc
 # gw these produce rpmlint errors:
-rm -rf %buildroot%_datadir/locale/{be@latin}
-%find_lang %{name}-2.0
-
-
-# restore gnome-wm.desktop file
-install -m644 %{SOURCE4} %{buildroot}%{_datadir}/applications/gnome-wm.desktop
+rm -rf %{buildroot}%{_datadir}/locale/{be@latin}
+%find_lang %{name}-3.0
 
 # remove unpackaged files
 rm -rf %{buildroot}%{_datadir}/xsessions
-
-
-%define schemas gnome-session
-
-%if %mdkversion < 200900
-%post bin
-%post_install_gconf_schemas %{schemas}
-%endif
 
 %post
 if [ "$1" = "2" -a -r /etc/sysconfig/desktop ]; then
   sed -i -e "s|^DESKTOP=Gnome$|DESKTOP=GNOME|g" /etc/sysconfig/desktop
 fi
 %{make_session}
-%if %mdkversion < 200900
-%{update_menus}
-%endif
-
-%if %mdkversion < 200900
-%post bin
-%update_icon_cache hicolor
-%endif
-
-%preun bin
-%preun_uninstall_gconf_schemas %{schemas}
 
 %postun
 %{make_session}
-%if %mdkversion < 200900
-%{clean_menus}
-%endif
-
-%if %mdkversion < 200900
-%postun bin
-%clean_icon_cache hicolor
-%endif
-
-%clean
-[ -n "%{buildroot}" -a "%{buildroot}" != / ] && rm -rf %{buildroot}
 
 %files bin
-%defattr (-, root, root)
-%{_sysconfdir}/gconf/schemas/*
 %{_bindir}/gnome-session
-%{_mandir}/*/gnome-session.*
-%{_datadir}/%name
-%_datadir/icons/hicolor/*/apps/*
+%{_datadir}/glib-2.0/schemas/org.gnome.SessionManager.gschema.xml
+%{_datadir}/%{name}
+%{_datadir}/icons/hicolor/*/apps/*
+%{_mandir}/man1/gnome-session.*
 
-%files -f %{name}-2.0.lang
-%defattr (-, root, root)
+%files -f %{name}-3.0.lang
 %doc AUTHORS COPYING ChangeLog NEWS README
 %config(noreplace) %{_sysconfdir}/X11/wmsession.d/*
 %{_sysconfdir}/gnome/gnomerc
 %{_bindir}/startgnome
+%{_bindir}/startgnomeclassic
 %{_bindir}/gnome-session-properties
-%{_bindir}/gnome-wm
-%{_bindir}/gnome-session-save
+%{_bindir}/gnome-session-quit
+%{_libdir}/gnome-session-check-accelerated
+%{_libdir}/gnome-session-check-accelerated-helper
 %{_datadir}/applications/*
-%{_mandir}/*/gnome-wm.*
-%{_mandir}/*/gnome-session-properties.*
-%{_mandir}/*/gnome-session-save.*
+%{_datadir}/GConf/gsettings/gnome-session.convert
+%{_mandir}/man1/gnome-session-properties.*
+%{_mandir}/man1/gnome-session-quit.*
 
