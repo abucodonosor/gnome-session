@@ -62,13 +62,11 @@ gnome-session internally.
 %apply_patches
 
 %build
-
 %configure2_5x
 
 %make
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std
 
 # wmsession session file
