@@ -1,0 +1,34 @@
+#!/bin/sh
+
+if [ -r $HOME/.gnome2/session-manual -a ! -r $HOME/.gnome2/.mdkgalaxymigrate ]; then
+  sed -i -e 's|0,RestartStyleHint=3\n0,Priority=50\n0,RestartCommand=/usr/bin/mandrakegalaxy\n||m' $HOME/.gnome2/session-manual 
+touch $HOME/.gnome2/.mdkgalaxymigrate 
+fi
+
+if [ "$MDV_MENU_STYLE" = "upstream" ]; then
+	if  [ -z "$XDG_CONFIG_DIRS" ]; then
+ 	    export XDG_CONFIG_DIRS="/etc/xdg/gnome:/etc/xdg"
+	else
+	    export XDG_CONFIG_DIRS="/etc/xdg/gnome:$XDG_CONFIG_DIRS"
+	fi
+else
+	if  [ -z "$XDG_CONFIG_DIRS" ]; then
+ 	    export XDG_CONFIG_DIRS="/etc/xdg:/etc/xdg/gnome"
+	else
+	    export XDG_CONFIG_DIRS="$XDG_CONFIG_DIRS:/etc/xdg/gnome"
+	fi
+fi
+
+#clean up old sockets if any
+[ -x /usr/bin/linc-cleanup-sockets ] && /usr/bin/linc-cleanup-sockets 2> /dev/null > /dev/null
+
+SESSION_ARGS=
+if [ "$GNOME_CLASSIC" = 1 ]; then
+  SESSION_ARGS="--session gnome-fallback"
+  unset GNOME_CLASSIC
+fi
+
+
+# path takes precedence
+exec gnome-session
+exec /usr/bin/gnome-session

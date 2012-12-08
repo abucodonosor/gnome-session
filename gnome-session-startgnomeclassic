@@ -1,0 +1,3 @@
+#!/bin/sh
+export GNOME_CLASSIC=1
+exec startgnome

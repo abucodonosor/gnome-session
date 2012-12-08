@@ -1,0 +1,7 @@
+#!/bin/sh
+if [ -x ~/.gnomerc ]; then 
+ exec ~/.gnomerc
+else
+ exec /etc/gnome/gnomerc
+fi
+
