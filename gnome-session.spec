@@ -1,7 +1,7 @@
 Summary:	The gnome desktop programs for the GNOME GUI desktop environment
 Name:		gnome-session
 Version:	3.6.2
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
 URL:		http://www.gnome.org/softwaremap/projects/gnome-session/
@@ -51,7 +51,6 @@ when you log into GNOME.
 Group: %{group}
 Summary: %{summary}
 Conflicts: gnome-session < 2.30.2-2mdv
-Requires: GConf2-sanity-check
 
 %description bin
 This package contains the binaries for the GNOME Session Manager, but 
