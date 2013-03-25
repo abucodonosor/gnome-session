@@ -1,7 +1,7 @@
 Summary:	The gnome desktop programs for the GNOME GUI desktop environment
 Name:		gnome-session
 Version:	3.6.2
-Release:	2
+Release:	3
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
 URL:		http://www.gnome.org/softwaremap/projects/gnome-session/
@@ -30,6 +30,9 @@ BuildRequires:	pkgconfig(xcomposite)
 BuildRequires:	pkgconfig(xext)
 BuildRequires:	pkgconfig(xrender)
 BuildRequires:	pkgconfig(xtst)
+BuildRequires:  pkgconfig(libsystemd-login) >= 38
+BuildRequires:  pkgconfig(libsystemd-daemon)
+BuildRequires:  pkgconfig(polkit-gobject-1)
 BuildRequires:	x11-xtrans-devel
 BuildRequires:	tcp_wrappers-devel
 
@@ -62,7 +65,7 @@ gnome-session internally.
 %apply_patches
 
 %build
-%configure2_5x
+%configure2_5x --enable-systemd --disable-schemas-install
 
 %make
 
