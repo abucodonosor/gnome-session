@@ -108,8 +108,8 @@ if [ "$1" = "2" -a -r /etc/sysconfig/desktop ]; then
 fi
 %{make_session}
 
-%postun
-%{make_session}
+#%postun
+#%{make_session}
 
 %files bin
 %{_bindir}/gnome-session
