@@ -83,15 +83,6 @@ SCRIPT:
 exec %{_bindir}/startgnome
 EOF
 
-cat << EOF > %{buildroot}%{_sysconfdir}/X11/wmsession.d/03GNOMECLASSIC
-NAME=Gnome Classic
-ICON=gnome-logo-icon-transparent.png
-DESC=GNOME 3 with separate panel and window manager
-EXEC=%{_bindir}/startgnomeclassic
-SCRIPT:
-exec %{_bindir}/startgnomeclassic
-EOF
-
 desktop-file-install --vendor="" \
 	--add-category="X-MandrivaLinux-System-Configuration-GNOME-Advanced" \
 	--add-category="GTK" \
