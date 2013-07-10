@@ -22,6 +22,7 @@ BuildRequires:	pkgconfig(gconf-2.0)
 BuildRequires:	pkgconfig(gio-2.0) >= 2.28.0
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(glib-2.0) >= 2.28.0
+BuildRequires:	pkgconfig(gnome-desktop-3.0)
 BuildRequires:	pkgconfig(gtk+-3.0) >= 2.90.7
 BuildRequires:	pkgconfig(ice)
 BuildRequires:	pkgconfig(json-glib-1.0) >= 0.10
