@@ -130,10 +130,13 @@ fi
 %{_bindir}/startgnomeclassic
 %{_bindir}/gnome-session-properties
 %{_bindir}/gnome-session-quit
+%{_bindir}/gnome-session-inhibit
+%{_libdir}/gnome-session-failed
 %{_libdir}/gnome-session-check-accelerated
 %{_libdir}/gnome-session-check-accelerated-helper
 %{_datadir}/applications/*
 %{_datadir}/GConf/gsettings/gnome-session.convert
 %{_mandir}/man1/gnome-session-properties.*
 %{_mandir}/man1/gnome-session-quit.*
+%{_mandir}/man1/gnome-session-inhibit.*
 
