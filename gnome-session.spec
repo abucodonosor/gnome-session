@@ -26,6 +26,7 @@ BuildRequires:	pkgconfig(gnome-desktop-3.0)
 BuildRequires:	pkgconfig(gtk+-3.0) >= 2.90.7
 BuildRequires:	pkgconfig(ice)
 BuildRequires:	pkgconfig(json-glib-1.0) >= 0.10
+BuildRequires:	pkgconfig(libsystemd-journal)
 BuildRequires:	pkgconfig(libsystemd-login) >= 38
 BuildRequires:	pkgconfig(libsystemd-daemon)
 BuildRequires:	pkgconfig(polkit-gobject-1)
