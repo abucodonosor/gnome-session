@@ -131,9 +131,9 @@ fi
 %{_bindir}/gnome-session-properties
 %{_bindir}/gnome-session-quit
 %{_bindir}/gnome-session-inhibit
-%{_libdir}/gnome-session-failed
-%{_libdir}/gnome-session-check-accelerated
-%{_libdir}/gnome-session-check-accelerated-helper
+%{_libexecdir}/gnome-session-failed
+%{_libexecdir}/gnome-session-check-accelerated
+%{_libexecdir}/gnome-session-check-accelerated-helper
 %{_datadir}/applications/*
 %{_datadir}/GConf/gsettings/gnome-session.convert
 %{_mandir}/man1/gnome-session-properties.*
