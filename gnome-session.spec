@@ -3,7 +3,7 @@
 Summary:	The gnome desktop programs for the GNOME GUI desktop environment
 Name:		gnome-session
 Version:	3.8.2.1
-Release:	6
+Release:	7
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
 Url:		http://www.gnome.org/softwaremap/projects/gnome-session/
