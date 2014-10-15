@@ -2,8 +2,8 @@
 
 Summary:	The gnome desktop programs for the GNOME GUI desktop environment
 Name:		gnome-session
-Version:	3.8.2.1
-Release:	7
+Version:	3.14.0
+Release:	1
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
 Url:		http://www.gnome.org/softwaremap/projects/gnome-session/
@@ -18,7 +18,6 @@ BuildRequires:	intltool >= 0.40.0
 BuildRequires:	xmlto
 BuildRequires:	tcp_wrappers-devel
 BuildRequires:	pkgconfig(dbus-glib-1) >= 0.76
-BuildRequires:	pkgconfig(gconf-2.0)
 BuildRequires:	pkgconfig(gio-2.0) >= 2.28.0
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(glib-2.0) >= 2.28.0
@@ -38,7 +37,6 @@ BuildRequires:	pkgconfig(xext)
 BuildRequires:	pkgconfig(xrender)
 BuildRequires:	pkgconfig(xtrans)
 BuildRequires:	pkgconfig(xtst)
-Requires:	GConf2 >= 1.2.1
 Requires:	desktop-common-data
 Requires:	gnome-user-docs
 Requires:	gnome-settings-daemon
@@ -87,13 +85,6 @@ SCRIPT:
 exec %{_bindir}/startgnome
 EOF
 
-desktop-file-install --vendor="" \
-	--add-category="X-MandrivaLinux-System-Configuration-GNOME-Advanced" \
-	--add-category="GTK" \
-	--add-category="GNOME" \
-	--dir %{buildroot}%{_datadir}/applications \
-	%{buildroot}%{_datadir}/applications/*
-
 install -m 0755 %{SOURCE1} %{buildroot}%{_bindir}/startgnome
 install -m 0755 %{SOURCE3} %{buildroot}%{_bindir}/startgnomeclassic
 
@@ -128,15 +119,13 @@ fi
 %{_sysconfdir}/gnome/gnomerc
 %{_bindir}/startgnome
 %{_bindir}/startgnomeclassic
-%{_bindir}/gnome-session-properties
 %{_bindir}/gnome-session-quit
 %{_bindir}/gnome-session-inhibit
-%{_libdir}/gnome-session-failed
-%{_libdir}/gnome-session-check-accelerated
-%{_libdir}/gnome-session-check-accelerated-helper
-%{_datadir}/applications/*
+%{_libexecdir}/gnome-session-failed
+%{_libexecdir}/gnome-session-check-accelerated
+%{_libexecdir}/gnome-session-check-accelerated-helper
+%{_datadir}/wayland-sessions
 %{_datadir}/GConf/gsettings/gnome-session.convert
-%{_mandir}/man1/gnome-session-properties.*
 %{_mandir}/man1/gnome-session-quit.*
 %{_mandir}/man1/gnome-session-inhibit.*
 
