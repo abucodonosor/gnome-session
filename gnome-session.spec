@@ -2,7 +2,7 @@
 
 Summary:	The gnome desktop programs for the GNOME GUI desktop environment
 Name:		gnome-session
-Version:	3.14.0
+Version:	 3.16.0
 Release:	2
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
@@ -56,8 +56,8 @@ Summary:	%{summary}
 Conflicts:	gnome-session < 2.30.2-2mdv
 
 %description bin
-This package contains the binaries for the GNOME Session Manager, but 
-no startup scripts. It is meant for applications such as GDM that use 
+This package contains the binaries for the GNOME Session Manager, but
+no startup scripts. It is meant for applications such as GDM that use
 gnome-session internally.
 
 %prep
