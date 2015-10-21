@@ -122,6 +122,7 @@ fi
 %{_bindir}/startgnomeclassic
 %{_bindir}/gnome-session-quit
 %{_bindir}/gnome-session-inhibit
+%{_libexecdir}/gnome-session-binary
 %{_libexecdir}/gnome-session-failed
 %{_libexecdir}/gnome-session-check-accelerated
 %{_libexecdir}/gnome-session-check-accelerated-helper
