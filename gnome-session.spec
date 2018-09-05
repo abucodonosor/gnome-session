@@ -39,7 +39,7 @@ BuildRequires:	pkgconfig(xtst)
 BuildRequires:	xmlto
 BuildRequires:	meson
 BuildRequires:  pkgconfig(glesv2)
-BuildRequires:  glesv3-devel
+#BuildRequires:  glesv3-devel
 
 Requires:	desktop-common-data
 Requires:	gnome-user-docs
