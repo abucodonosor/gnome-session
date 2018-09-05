@@ -38,10 +38,15 @@ BuildRequires:	pkgconfig(xtrans)
 BuildRequires:	pkgconfig(xtst)
 BuildRequires:	xmlto
 BuildRequires:	meson
+BuildRequires:  pkgconfig(glesv2)
+BuildRequires:  glesv3-devel
+
 Requires:	desktop-common-data
 Requires:	gnome-user-docs
 Requires:	gnome-settings-daemon
 Requires:	%{name}-bin >= %{version}-%{release}
+
+Suggests:   x11-server-xwayland
 
 %description
 GNOME (GNU Network Object Model Environment) is a user-friendly
