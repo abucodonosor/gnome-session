@@ -38,6 +38,8 @@ BuildRequires:	pkgconfig(xext)
 BuildRequires:	pkgconfig(xrender)
 BuildRequires:	pkgconfig(xtrans)
 BuildRequires:	pkgconfig(xtst)
+BuildRequires:	xmlto
+BuildRequires:	meson
 Requires:	desktop-common-data
 Requires:	gnome-user-docs
 Requires:	gnome-settings-daemon
@@ -66,14 +68,13 @@ gnome-session internally.
 %apply_patches
 
 %build
-%configure2_5x \
-	--enable-systemd \
-	--disable-schemas-install
-
-%make
+%meson                     \
+    -Dsystemd=true         \
+    -Dsystemd_journal=true
+%meson_build
 
 %install
-%makeinstall_std
+%meson_install
 
 # wmsession session file
 mkdir -p %{buildroot}%{_sysconfdir}/X11/wmsession.d
